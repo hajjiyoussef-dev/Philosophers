@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:17 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/11 19:54:02 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/12 17:28:45 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int init_mtx(t_params *par)
         return (1);
     if (pthread_mutex_init(par->death, NULL) != 0)
         return(1);
+    if (pthread_mutex_init(par->it_over, NULL) != 0)
+        return (1);
+    par->it_over = 0;
     i = 0;
     while (i < par->philo_nbr)
     {

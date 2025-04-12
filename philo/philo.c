@@ -6,16 +6,46 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:49:37 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/11 23:14:18 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/12 22:31:52 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
-void *routine()
+int it_not_over_yeat(t_philo *philo)
 {
+    long time ;
+    time = gettimes();
     
+    if (time - philo->last_meal_time > philo->parms->time_to_die)
+    {
+        pthread_mutex_lock(philo->parms->death);
+        philo->parms->it_over = 1;
+        pthread_mutex_unlock(philo->parms->death);
+        return (0);
+    }
+    if (philo->parms->check_meal && philo->meals_count >= philo->parms->max_philo_eat)
+    {
+        return (0);
+    }
+    return (1);
+}
+
+void *routine(void *argv)
+{
+    t_philo *philo;
+
+    philo = (t_philo *)argv;
+    while (it_not_over_yeat(philo))
+    {
+        ft_think(philo);
+        ft_take_forks(philo);
+        ft_eat(philo);
+        ft_put_down_forks(philo);
+        ft_sleep(philo);
+    }
+    return (NULL);
 }
 
 long gettimes()
@@ -55,6 +85,7 @@ int philosophers(t_params *par)
     init_philosophers(par, philo);
     i = 0;
     par->start = gettimes();
+    
     while (i < par->philo_nbr)
     {
         if (pthread_create(&philo[i].thread_id, NULL, routine, &philo[i]) != 0)
@@ -67,7 +98,5 @@ int philosophers(t_params *par)
         pthread_join(philo[i].thread_id, NULL);
         i++;
     }
-    
     return (0);
-    
 }

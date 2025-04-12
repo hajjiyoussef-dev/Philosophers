@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   printf_status.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 18:40:04 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/12 22:32:12 by yhajji           ###   ########.fr       */
+/*   Created: 2025/04/12 17:05:45 by yhajji            #+#    #+#             */
+/*   Updated: 2025/04/12 22:33:03 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
- //exit is forbidan function
-void ft_error(char *str)
+void ft_usleep(int time_to_sleep)
 {
-    printf("Error:{ %s }\n", str);
-    
+    usleep(time_to_sleep * 1000);
+}
+
+void ft_printf_status(char *msg, t_philo *philo)
+{
+    long time;
+
+    pthread_mutex_lock(philo->parms->death);
+    time = gettimes() - philo->parms->start;
+    if (!(&philo->parms->it_over))
+        printf("%ld %d %s\n", time, philo->id_philo, msg);
+    pthread_mutex_unlock(philo->parms->death);
 }
