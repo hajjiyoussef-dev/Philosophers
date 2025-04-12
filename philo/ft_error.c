@@ -6,17 +6,16 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:40:04 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/10 18:55:56 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/11 19:52:35 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
-
+ //exit is forbidan function
 void *ft_error(char *str)
 {
     printf("Error:{ %s }\n", str);
-    exit(1);
     
 }
