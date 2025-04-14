@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:17 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/12 17:28:45 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/13 22:42:02 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,26 @@ int init_mtx(t_params *par)
     int i;
 
     //free ?????
-    
+    // fprintf(stderr, "hana11\n");
     par->fork = malloc(sizeof(pthread_mutex_t) * par->philo_nbr);
     if (!par->fork)
         return (1);
     par->death = malloc(sizeof(pthread_mutex_t));
     if (!par->death)
         return (1);
+    par->mutex_over = malloc(sizeof(pthread_mutex_t));
+    if (!par->mutex_over)
+        return (1);
+    // fprintf(stderr, "hana22\n");
     if (pthread_mutex_init(par->death, NULL) != 0)
         return(1);
-    if (pthread_mutex_init(par->it_over, NULL) != 0)
+    // fprintf(stderr, "hana33\n");
+    if (pthread_mutex_init(par->mutex_over, NULL) != 0)
         return (1);
+    // fprintf(stderr, "hana44\n");
     par->it_over = 0;
     i = 0;
+    // fprintf(stderr, "hana55\n");
     while (i < par->philo_nbr)
     {
         if (pthread_mutex_init(&par->fork[i], NULL) != 0)
@@ -68,16 +75,19 @@ int main(int argc, char *argv[])
 {
     t_params p;
 
+    // fprintf(stderr, "hana0");
     if ((argc != 5 && argc != 6) || init_all(&p, argv))
     {
         ft_error("invalid arguments");
         return (EXIT_FAILURE);
     }
+    // fprintf(stderr, "hana1");
     if (init_mtx(&p))
     {
         ft_error("failed mutex init");
         return (EXIT_FAILURE);
     }
+    // fprintf(stderr, "hana2\n");
     if (philosophers(&p))
         return (EXIT_FAILURE);
     return (EXIT_SUCCESS);

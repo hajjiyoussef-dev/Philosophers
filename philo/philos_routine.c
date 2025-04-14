@@ -6,12 +6,11 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:44:49 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/12 18:32:17 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/14 16:30:12 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 void ft_think(t_philo *philo)
 {
@@ -20,8 +19,22 @@ void ft_think(t_philo *philo)
 
 void ft_take_forks(t_philo *philo)
 {
-    pthread_mutex_lock(philo->lf);
-    pthread_mutex_lock(philo->rf);
+    pthread_mutex_t *first;
+    pthread_mutex_t *second;
+
+    if (philo->lf > philo->rf)
+    {
+        first = philo->lf;
+        second = philo->rf;
+    }
+    else
+    {
+        first = philo->rf;
+        second = philo->lf;
+    }
+    pthread_mutex_lock(first);
+    ft_printf_status("has taken a fork", philo);
+    pthread_mutex_lock(second);
     ft_printf_status("has taken a fork", philo);
 }
 

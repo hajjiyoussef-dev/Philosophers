@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:27 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/12 22:34:52 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/14 19:23:09 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 
 typedef pthread_mutex_t t_mtx;
+typedef struct s_philo t_philo;
+typedef struct s_params  t_params;
+
 
 
 typedef struct s_params
@@ -39,6 +42,7 @@ typedef struct s_params
     t_mtx   *mutex_over;
     t_mtx   *fork;
     t_mtx   *death;
+    t_philo *philo;
     
 } t_params;
 
@@ -57,6 +61,13 @@ typedef struct s_philo
 }  t_philo ;
 
 
+typedef struct connect
+{
+    t_params *parms;
+    t_philo *philo;
+    
+} t_connect;
+
 
 int	ft_atoi(const char *str);
 void ft_error(char *str);
@@ -71,6 +82,7 @@ void ft_take_forks(t_philo *philo);
 void ft_eat(t_philo *philo);
 void ft_put_down_forks(t_philo *philo);
 void ft_sleep(t_philo *philo);
+void *routing_monitor(void *argv);
 
 
 
