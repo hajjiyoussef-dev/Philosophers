@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:44:49 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/14 16:30:12 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/15 19:41:36 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,29 @@ void ft_think(t_philo *philo)
 
 void ft_take_forks(t_philo *philo)
 {
-    pthread_mutex_t *first;
-    pthread_mutex_t *second;
-
-    if (philo->lf > philo->rf)
+    if (philo->id_philo % 2 == 0)
     {
-        first = philo->lf;
-        second = philo->rf;
+        pthread_mutex_lock(philo->lf);
+        ft_printf_status("has taken a fork", philo);
+        pthread_mutex_lock(philo->rf);
+        ft_printf_status("has taken a fork", philo);
     }
     else
     {
-        first = philo->rf;
-        second = philo->lf;
+        pthread_mutex_lock(philo->rf);
+        ft_printf_status("has taken a fork", philo);
+        pthread_mutex_lock(philo->lf);
+        ft_printf_status("has taken a fork", philo);
     }
-    pthread_mutex_lock(first);
-    ft_printf_status("has taken a fork", philo);
-    pthread_mutex_lock(second);
-    ft_printf_status("has taken a fork", philo);
 }
 
 void ft_eat(t_philo *philo)
 {
-    ft_printf_status("is eating ", philo);
+    pthread_mutex_lock(philo->parms->death);
     philo->last_meal_time = gettimes();
     philo->meals_count++;
+    pthread_mutex_unlock(philo->parms->death);
+    ft_printf_status("is eating", philo);
     ft_usleep(philo->parms->time_to_eat);
 }
 

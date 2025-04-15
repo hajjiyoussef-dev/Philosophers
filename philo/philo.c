@@ -6,38 +6,13 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:49:37 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/14 22:43:48 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/15 19:39:20 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 
-// int it_not_over_yeat(t_philo *philo)
-// {
-//     long time;
-//     long death_time;
-    
-//     time = gettimes();
-//     if (time - philo->last_meal_time > philo->parms->time_to_die)
-//     {
-//         pthread_mutex_lock(philo->parms->death);
-//         if (!philo->parms->it_over)
-//         {
-//             philo->parms->it_over = 1;
-//             death_time = gettimes() - philo->parms->start;
-//             printf("%ld %d died\n", death_time, philo->id_philo + 1);
-//             fflush(stdout);
-//         }
-//         pthread_mutex_unlock(philo->parms->death);
-//         return (0);
-//     }
-//     if (philo->parms->check_meal && philo->meals_count >= philo->parms->max_philo_eat)
-//     {
-//         return (0);
-//     }
-//     return (1);
-// }
 
 void *routine(void *argv)
 {
@@ -45,9 +20,16 @@ void *routine(void *argv)
 
     philo = (t_philo *)argv;
     if (philo->id_philo % 2 != 0)
-        usleep(1000);
-    while (!(philo->parms->it_over))
+        usleep(philo->parms->time_to_eat);
+    while (1)
     {
+        pthread_mutex_lock(philo->parms->death);
+        if (philo->parms->it_over)
+        {
+            pthread_mutex_unlock(philo->parms->death);
+            break;
+        }
+        pthread_mutex_unlock(philo->parms->death);
         ft_take_forks(philo);
         ft_eat(philo);
         ft_put_down_forks(philo);
@@ -110,5 +92,6 @@ int philosophers(t_params *par)
         pthread_join(philo[i].thread_id, NULL);
         i++;
     }
+    pthread_join(monitor_id, NULL);
     return (0);
 }

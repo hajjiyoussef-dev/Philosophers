@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:41:41 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/14 22:44:12 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/15 19:54:19 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void *routing_monitor(void *argv)
         {
             time_now = gettimes();
             pthread_mutex_lock(par->death);
-            // if (time_now - conn)
             if (time_now - par->philo[i].last_meal_time > par->time_to_die)
             {
                 par->it_over = 1;
@@ -47,6 +46,7 @@ void *routing_monitor(void *argv)
         }
         if (par->check_meal && full_philo == par->philo_nbr)
         {
+            fprintf(stderr, "hana3\n");
             pthread_mutex_lock(par->death);
             par->it_over = 1;
             pthread_mutex_unlock(par->death);
