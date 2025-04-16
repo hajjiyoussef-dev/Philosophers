@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:44:49 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/16 16:33:00 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/16 22:24:04 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void ft_eat(t_philo *philo)
     pthread_mutex_lock(philo->parms->death);
     philo->last_meal_time = gettimes();
     philo->meals_count++;
-    if ()
+    if (philo->meals_count == philo->parms->max_philo_eat)
+        philo->is_full = true;
     pthread_mutex_unlock(philo->parms->death);
     ft_printf_status("is eating", philo);
     ft_usleep(philo->parms->time_to_eat);

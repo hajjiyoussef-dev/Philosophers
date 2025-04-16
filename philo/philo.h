@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:27 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/16 16:33:28 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/16 22:21:33 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <limits.h>
-#include <bool
+#include <stdbool.h>
 
 
 typedef pthread_mutex_t t_mtx;

@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:41:41 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/15 19:54:19 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/16 22:25:31 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,16 @@ void *routing_monitor(void *argv)
                 pthread_mutex_unlock(par->death);
                 return (NULL);
             }
-            if (par->check_meal && par->philo[i].meals_count >= par->max_philo_eat)
+            // if (par->check_meal && par->philo[i].meals_count >= par->max_philo_eat)
+            //     full_philo++;
+            if (par->philo[i].is_full)
                 full_philo++;
             pthread_mutex_unlock(par->death);
             i++;
         }
-        if (par->check_meal && full_philo == par->philo_nbr)
+        if (full_philo == par->philo_nbr)
         {
-            fprintf(stderr, "hana3\n");
+            // fprintf(stderr, "hana3\n");
             pthread_mutex_lock(par->death);
             par->it_over = 1;
             pthread_mutex_unlock(par->death);
