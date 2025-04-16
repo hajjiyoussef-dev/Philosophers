@@ -6,12 +6,20 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:49:37 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/15 19:39:20 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/16 16:25:40 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+
+void handle1(t_params *par)
+{
+    printf("0 1 has taken a fork\n");
+    ft_usleep(par->time_to_die);
+    printf("%d 1 died\n", (par->time_to_die));
+    return;
+}
 
 
 void *routine(void *argv)
@@ -19,8 +27,8 @@ void *routine(void *argv)
     t_philo *philo;
 
     philo = (t_philo *)argv;
-    if (philo->id_philo % 2 != 0)
-        usleep(philo->parms->time_to_eat);
+    // if (philo->id_philo % 2 != 0)
+    //     usleep(philo->parms->time_to_eat);
     while (1)
     {
         pthread_mutex_lock(philo->parms->death);

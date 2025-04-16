@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:27 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/14 19:23:09 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/16 16:33:28 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <limits.h>
+#include <bool
 
 
 typedef pthread_mutex_t t_mtx;
@@ -52,6 +53,7 @@ typedef struct s_philo
     long    meals_count;
     long    last_meal_time;
     pthread_t   thread_id;
+    bool is_full;
 
     t_mtx   *lf;
     t_mtx   *rf;
@@ -76,6 +78,7 @@ long gettimes();
 int philosophers(t_params *par);
 void ft_printf_status(char *msg, t_philo *philo);
 void ft_usleep(int time_to_sleep);
+void handle1(t_params *par);
 
 void ft_think(t_philo *philo);
 void ft_take_forks(t_philo *philo);

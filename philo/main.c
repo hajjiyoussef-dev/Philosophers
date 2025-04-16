@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:17 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/13 22:42:02 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/16 16:15:31 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int main(int argc, char *argv[])
         ft_error("invalid arguments");
         return (EXIT_FAILURE);
     }
+    if (p.philo_nbr == 1)
+        return (handle1(&p), 0);
     // fprintf(stderr, "hana1");
     if (init_mtx(&p))
     {
