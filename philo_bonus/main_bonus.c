@@ -6,13 +6,13 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:54:54 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/19 19:29:10 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/19 19:35:45 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void init_sem()
+void init_sem(t_params *par)
 {
 	
 }
