@@ -11,7 +11,7 @@ RM = rm -rf
 $(NAME): $(OBJC)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJC)
 
-%.o: %.c
+%.o: %.c philo.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)

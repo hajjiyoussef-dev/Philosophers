@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 17:52:27 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/16 22:21:33 by yhajji           ###   ########.fr       */
+/*   Created: 2025/04/19 15:55:20 by yhajji            #+#    #+#             */
+/*   Updated: 2025/04/19 16:14:44 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-#define PHILO_H
+#ifndef PHILO_BONUS
+#define PHILO_BONUS
+
 
 #include <stdio.h>
 #include <unistd.h>
-#include <pthread.h>
 #include <stdlib.h>
+#include <semaphore.h>
 #include <sys/time.h>
 #include <limits.h>
 #include <stdbool.h>
 
 
-typedef pthread_mutex_t t_mtx;
+
+
 typedef struct s_philo t_philo;
 typedef struct s_params  t_params;
 
@@ -40,9 +42,9 @@ typedef struct s_params
     int     it_over;
     
 
-    t_mtx   *mutex_over;
-    t_mtx   *fork;
-    t_mtx   *death;
+    sem_t   *mutex_over;
+    sem_t   *fork;
+    sem_t   *death;
     t_philo *philo;
     
 } t_params;
@@ -52,34 +54,14 @@ typedef struct s_philo
     int     id_philo;
     long    meals_count;
     long    last_meal_time;
-    pthread_t   thread_id;
+    pid_t   thread_id;
     bool is_full;
 
-    t_mtx   *lf;
-    t_mtx   *rf;
+    sem_t   *lf;
+    sem_t   *rf;
 
     t_params *parms;
     
 }  t_philo ;
-
-
-int	ft_atoi(const char *str);
-void ft_error(char *str);
-
-long gettimes();
-int philosophers(t_params *par);
-void ft_printf_status(char *msg, t_philo *philo);
-void ft_usleep(int time_to_sleep, t_philo *philo);
-void handle1(t_params *par);
-
-void ft_think(t_philo *philo);
-void ft_take_forks(t_philo *philo);
-void ft_eat(t_philo *philo);
-void ft_put_down_forks(t_philo *philo);
-void ft_sleep(t_philo *philo);
-void *routing_monitor(void *argv);
-
-
-
 
 #endif

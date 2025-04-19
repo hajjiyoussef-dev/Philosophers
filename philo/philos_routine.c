@@ -15,6 +15,7 @@
 void ft_think(t_philo *philo)
 {
     ft_printf_status("is thinking", philo);
+    usleep(600);
 }
 
 void ft_take_forks(t_philo *philo)
@@ -44,7 +45,7 @@ void ft_eat(t_philo *philo)
         philo->is_full = true;
     pthread_mutex_unlock(philo->parms->death);
     ft_printf_status("is eating", philo);
-    ft_usleep(philo->parms->time_to_eat);
+    ft_usleep(philo->parms->time_to_eat, philo);
 }
 
 void ft_put_down_forks(t_philo *philo)
@@ -56,5 +57,5 @@ void ft_put_down_forks(t_philo *philo)
 void ft_sleep(t_philo *philo)
 {
     ft_printf_status("is sleeping", philo);
-    ft_usleep(philo->parms->time_to_sleep);
+    ft_usleep(philo->parms->time_to_sleep, philo);
 }

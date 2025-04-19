@@ -13,9 +13,12 @@
 #include "philo.h"
 
 
-void ft_usleep(int time_to_sleep)
+void ft_usleep(int time_to_sleep, t_philo *philo)
 {
-    usleep(time_to_sleep * 1000);
+    if (philo->parms->time_to_die < time_to_sleep)
+        usleep(philo->parms->time_to_die * 1000);
+    else
+        usleep(time_to_sleep * 1000);
 }
 
 void ft_printf_status(char *msg, t_philo *philo)

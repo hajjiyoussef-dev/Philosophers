@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:17 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/16 16:15:31 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/19 19:28:19 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int init_all(t_params *par, char **argv)
         
     return (0);
 }
-
 
 int main(int argc, char *argv[])
 {

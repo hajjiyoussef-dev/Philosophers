@@ -16,7 +16,7 @@
 void handle1(t_params *par)
 {
     printf("0 1 has taken a fork\n");
-    ft_usleep(par->time_to_die);
+    ft_usleep(par->time_to_die, par->philo);
     printf("%d 1 died\n", (par->time_to_die));
     return;
 }
