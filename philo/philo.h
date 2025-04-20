@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:27 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/16 22:21:33 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/20 17:03:32 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ typedef struct s_philo
 
 
 int	ft_atoi(const char *str);
-void ft_error(char *str);
+void ft_error(char *str, t_params *par, int flag);
+void ft_clear(t_params *par);
 
 long gettimes();
 int philosophers(t_params *par);

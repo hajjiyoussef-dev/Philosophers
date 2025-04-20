@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:41:41 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/16 22:25:31 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/20 14:55:51 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void *routing_monitor(void *argv)
             {
                 par->it_over = 1;
                 printf("%ld %d died\n", time_now - par->start,( par->philo[i].id_philo + 1));
-                fflush(stdout);
                 pthread_mutex_unlock(par->death);
                 return (NULL);
             }

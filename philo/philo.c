@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:49:37 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/16 22:19:45 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/20 15:45:54 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 void handle1(t_params *par)
 {
     printf("0 1 has taken a fork\n");
-    ft_usleep(par->time_to_die, par->philo);
+    // ft_usleep(par->time_to_die, par->philo);
+    usleep(par->time_to_die * 1000);
     printf("%d 1 died\n", (par->time_to_die));
     return;
 }

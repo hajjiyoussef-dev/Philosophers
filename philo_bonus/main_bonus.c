@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:54:54 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/19 19:37:02 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/20 16:40:39 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,25 @@
 
 int init_sem(t_params *par)
 {
-	
+	sem_unlink("/forks");
+    sem_unlink("/write");
+    sem_unlink("/meal_check");
+    sem_unlink("/death");
+
+    //should close all the sem and unlink tham all     
+    par->fork = sem_open("/forks", O_CREAT | O_EXCL, 0644, par->philo_nbr);
+    if (par->fork == SEM_FAILED)
+        return (1);
+    par->meal_check = sem_open("/meal_check", O_CREAT | O_EXCL, 0644, 1);
+    if (par->meal_check == SEM_FAILED)
+        return (1);
+    par->write = sem_open("/write", O_CREAT | O_EXCL, 0644, 1);
+    if (par->write == SEM_FAILED)
+        return (1);
+    par->death = sem_open("/death", O_CREAT | O_EXCL, 0644, 1);
+    if (par->death == SEM_FAILED)
+        return (1);
+	return (0);
 }
 
 int init_all(t_params *par, char **argv)
@@ -46,12 +64,13 @@ int main(int argc, char **argv)
 	t_params par;
 
 	if ((argc != 5 && argc != 6) || init_all(&par, argv))
-		ft_error("invalid arguments");
+		ft_error("invalid arguments", &par, 0);
 	if(par.philo_nbr == 1)
 		return (handle1(&par), 0);
 	if(init_sem(&par))
-		ft_error("failed sem init");
+		ft_error("failed sem init", &par, 1);
 	if (philosophers(&par))
 		return(EXIT_FAILURE);
 	return(EXIT_SUCCESS);
 }
+

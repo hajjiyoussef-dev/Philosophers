@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:17 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/19 19:28:19 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/20 17:15:56 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
     // fprintf(stderr, "hana0");
     if ((argc != 5 && argc != 6) || init_all(&p, argv))
     {
-        ft_error("invalid arguments");
+        ft_error("invalid arguments", &p, 0);
         return (EXIT_FAILURE);
     }
     if (p.philo_nbr == 1)
@@ -85,11 +85,11 @@ int main(int argc, char *argv[])
     // fprintf(stderr, "hana1");
     if (init_mtx(&p))
     {
-        ft_error("failed mutex init");
+        ft_error("failed mutex init", &p, 1);
         return (EXIT_FAILURE);
     }
     // fprintf(stderr, "hana2\n");
     if (philosophers(&p))
         return (EXIT_FAILURE);
-    return (EXIT_SUCCESS);
+    return (ft_clear(&p), EXIT_SUCCESS);
 }
