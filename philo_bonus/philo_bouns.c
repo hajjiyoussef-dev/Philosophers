@@ -27,12 +27,13 @@ long gettime()
 	return (((tv.tv_sec * 1000) +  (tv.tv_usec / 1000)));
 }
 
-void routine(t_philo *philo)
+void *routine(t_philo *philo)
 {
 	t_params *par = philo->parms;
 
 	if (philo->id_philo % 2 != 0)
 		usleep(1000);
+	ft_routing_monitor(&(philo->parms));
 	while (1)
 	{
 		sem_wait(philo->parms->death);
@@ -91,5 +92,7 @@ int philosophers(t_params *par)
 		}
 		par->philo[i].process_id = pid;
 	}
+
+	
 	return (0);
 }
