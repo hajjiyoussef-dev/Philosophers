@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:55:20 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/20 21:16:38 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/21 23:52:12 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 #include <stdlib.h>
 #include <semaphore.h>
 #include <fcntl.h>
+#include <pthread.h>
 #include <sys/time.h>
+#include <sys/wait.h>
+#include <signal.h>
 //
 #include <limits.h>
 //
@@ -62,22 +65,25 @@ typedef struct s_philo
     pid_t   process_id;
     bool is_full;
 
-    sem_t   *lf;
-    sem_t   *rf;
-
     t_params *parms;
-    
 }  t_philo ;
 
 
 void ft_error(char *str, t_params *par, int flag);
+int	ft_atoi(const char *str);
+void handle1(t_params *par);
 int philosophers(t_params *par);
 long gettime();
 
+void ft_print_status(char *str, t_philo *philo);
+void ft_usleep(int time_to_sleep, t_philo *philo);
 void ft_think(t_philo *philo);
 void ft_take_forks(t_philo *philo);
 void ft_eat(t_philo *philo);
 void ft_put_down_forks(t_philo *philo);
 void ft_sleep(t_philo *philo);
+
+void *ft_routing_moniter(void *argv);
+void ft_kill_process(t_params *par);
 
 #endif

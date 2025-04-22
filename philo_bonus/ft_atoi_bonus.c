@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 17:20:00 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/20 17:20:22 by yhajji           ###   ########.fr       */
+/*   Created: 2025/04/21 20:49:59 by yhajji            #+#    #+#             */
+/*   Updated: 2025/04/21 20:50:23 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-
 
 static int	ft_isdigit(int c)
 {

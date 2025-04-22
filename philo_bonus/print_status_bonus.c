@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:11:53 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/20 21:21:30 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/22 02:03:16 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@ void ft_usleep(int time_to_sleep, t_philo *philo)
 		usleep(time_to_sleep * 1000);
 }
 
-void ft_print_status(const char *str, t_philo *philo)
+void ft_print_status(char *str, t_philo *philo)
 {
 	long time;
 
 	sem_wait(philo->parms->death);
 	time = (gettime() - philo->parms->start);
-	if (philo->parms->it_over == 0)
-		printf("%ld %d %s", time, (philo->id_philo + 1), str);
-	sem_post(philo->parms->death);
-		
+	if (!philo->parms->it_over)
+		printf("%ld %d %s\n", time, (philo->id_philo + 1), str);
+	sem_post(philo->parms->death);	
 }

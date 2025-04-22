@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:54:54 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/20 16:40:39 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/22 02:02:56 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int init_sem(t_params *par)
     par->death = sem_open("/death", O_CREAT | O_EXCL, 0644, 1);
     if (par->death == SEM_FAILED)
         return (1);
-	return (0);
+	
+    return (0);
 }
 
 int init_all(t_params *par, char **argv)
@@ -55,6 +56,7 @@ int init_all(t_params *par, char **argv)
         return (1);
     par->start = 0;
     par->death = 0;
+    par->it_over = 0;
         
     return (0);
 }
@@ -73,4 +75,6 @@ int main(int argc, char **argv)
 		return(EXIT_FAILURE);
 	return(EXIT_SUCCESS);
 }
+
+
 

@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:18:43 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/20 20:48:03 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/22 02:07:48 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,46 +27,46 @@ long gettime()
 	return (((tv.tv_sec * 1000) +  (tv.tv_usec / 1000)));
 }
 
-void *routine(t_philo *philo)
+int routine(t_philo *philo)
 {
-	t_params *par = philo->parms;
+	pthread_t monitor_id;
 
 	if (philo->id_philo % 2 != 0)
 		usleep(1000);
-	ft_routing_monitor(&(philo->parms));
+	fflush(stdout);
+	pthread_create(&monitor_id, NULL, ft_routing_moniter, philo);
 	while (1)
 	{
 		sem_wait(philo->parms->death);
-		if (philo->parms->it_over)
+		if (philo->parms->it_over == 1)
 		{
 			sem_post(philo->parms->death);
 			break;
 		}
 		sem_post(philo->parms->death);
+		// printf("hdhbshd2\n");
+		// fflush(stdout);
 		ft_take_forks(philo);
 		ft_eat(philo);
 		ft_put_down_forks(philo);
 		ft_sleep(philo);
 		ft_think(philo);
 	}
-	return(NULL);
+	pthread_join(monitor_id, NULL);
+	return(0);
 }
 
 int init_philo(t_params *par)
 {
 	int i;
-
 	i = 0;
-
+	par->philo = malloc(sizeof(t_philo) * par->philo_nbr);
 	while (i < par->philo_nbr)
 	{
 		par->philo[i].id_philo = i;
-		par->philo[i].last_meal_time = par->start;
+		par->philo[i].last_meal_time = gettime();
 		par->philo[i].meals_count = 0;
 		par->philo[i].parms = par;
-		par->philo[i].lf = &par->fork[i];
-		par->philo[i].rf = &par->fork[((i + 1) % par->philo_nbr)];
-		// par->philo = par->philo
 		i++;
 	}
 	return (0);
@@ -91,8 +91,8 @@ int philosophers(t_params *par)
 			return(1);
 		}
 		par->philo[i].process_id = pid;
+		i++;
 	}
-
-	
+	ft_kill_process(par);
 	return (0);
 }

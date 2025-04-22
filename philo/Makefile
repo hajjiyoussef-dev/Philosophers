@@ -1,7 +1,7 @@
 NAME = philo
 
 SRC = ft_atoi.c ft_error.c main.c philo.c philos_routine.c \
-		printf_status.c  routing_observer.c
+		printf_status.c  routing_monitor.c
 
 OBJC = ${SRC:.c=.o}
 CC = cc

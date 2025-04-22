@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 16:26:34 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/20 20:37:12 by yhajji           ###   ########.fr       */
+/*   Created: 2025/04/21 22:46:03 by yhajji            #+#    #+#             */
+/*   Updated: 2025/04/21 22:46:29 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
 
 void ft_clear(t_params *par)
 {
