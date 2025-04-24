@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 20:26:00 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/24 01:26:19 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/24 03:00:12 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void ft_kill_process(t_params *par)
 				is_full++;
 				if (is_full == par->philo_nbr)
 				{
+					printf("hhhhhhhhhh");
 					break;
 				}
 			}

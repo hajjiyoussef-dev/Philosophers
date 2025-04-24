@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:18:43 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/24 02:48:59 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/24 03:03:57 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,7 @@ int philosophers(t_params *par)
 		par->philo[i].process_id = pid;
 		i++;
 	}
-	// i = 0;
-	// while (i < par->philo_nbr)
-	// {
-	// 	sem_wait(par->meal_check);
-	// 	i++;
-	// }
-	// i = 0;
-	// while (i < par->philo_nbr)
-	// {
-	// 	kill(par->philo[i].process_id, SIGKILL);
-	// 	i++;
-	// }	
 	ft_kill_process(par);
+	free(par->philo);
 	return (0);
 }
