@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:49:37 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/20 15:45:54 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/22 20:22:13 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void *routine(void *argv)
 
     philo = (t_philo *)argv;
     if (philo->id_philo % 2 != 0)
-        usleep(philo->parms->time_to_eat);
+        usleep(500);
     while (1)
     {
         pthread_mutex_lock(philo->parms->death);

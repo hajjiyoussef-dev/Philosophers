@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routing_monitor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhajji <yhajji@student.42.fr>              #+#  +:+       +#+        */
+/*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-04-21 15:10:44 by yhajji            #+#    #+#             */
-/*   Updated: 2025-04-21 15:10:44 by yhajji           ###   ########.fr       */
+/*   Created: 2025/04/21 15:10:44 by yhajji            #+#    #+#             */
+/*   Updated: 2025/04/22 20:58:51 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void *routing_monitor(void *argv)
             pthread_mutex_unlock(par->death);
             return (NULL);
         }
-        usleep(1000);
+        // usleep(1000);
     }
     return (NULL);
     

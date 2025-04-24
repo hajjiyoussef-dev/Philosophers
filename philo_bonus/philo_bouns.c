@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:18:43 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/22 02:07:48 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/24 02:48:59 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int routine(t_philo *philo)
 
 	if (philo->id_philo % 2 != 0)
 		usleep(1000);
-	fflush(stdout);
 	pthread_create(&monitor_id, NULL, ft_routing_moniter, philo);
 	while (1)
 	{
@@ -44,11 +43,14 @@ int routine(t_philo *philo)
 			break;
 		}
 		sem_post(philo->parms->death);
-		// printf("hdhbshd2\n");
-		// fflush(stdout);
 		ft_take_forks(philo);
 		ft_eat(philo);
 		ft_put_down_forks(philo);
+		if (philo->meals_count == philo->parms->max_philo_eat)
+		{
+			sem_post(philo->parms->meal_check);
+			exit(0);
+		}
 		ft_sleep(philo);
 		ft_think(philo);
 	}
@@ -93,6 +95,18 @@ int philosophers(t_params *par)
 		par->philo[i].process_id = pid;
 		i++;
 	}
+	// i = 0;
+	// while (i < par->philo_nbr)
+	// {
+	// 	sem_wait(par->meal_check);
+	// 	i++;
+	// }
+	// i = 0;
+	// while (i < par->philo_nbr)
+	// {
+	// 	kill(par->philo[i].process_id, SIGKILL);
+	// 	i++;
+	// }	
 	ft_kill_process(par);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:54:54 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/22 02:02:56 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/24 01:35:12 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int init_sem(t_params *par)
     par->fork = sem_open("/forks", O_CREAT | O_EXCL, 0644, par->philo_nbr);
     if (par->fork == SEM_FAILED)
         return (1);
-    par->meal_check = sem_open("/meal_check", O_CREAT | O_EXCL, 0644, 1);
+    par->meal_check = sem_open("/meal_check", O_CREAT | O_EXCL, 0644, 0);
     if (par->meal_check == SEM_FAILED)
         return (1);
     par->write = sem_open("/write", O_CREAT | O_EXCL, 0644, 1);
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 		ft_error("failed sem init", &par, 1);
 	if (philosophers(&par))
 		return(EXIT_FAILURE);
-	return(EXIT_SUCCESS);
+	return(0);
 }
 
 

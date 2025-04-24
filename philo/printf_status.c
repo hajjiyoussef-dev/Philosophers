@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:05:45 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/22 01:41:25 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/22 21:04:07 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 
 void ft_usleep(int time_to_sleep, t_philo *philo)
 {
-    if (philo->parms->time_to_die < time_to_sleep)
-        usleep(philo->parms->time_to_die * 1000);
-    else
-        usleep(time_to_sleep * 1000);
+    (void)philo;
+    long time;
+    
+    time = gettimes();
+    while (time_to_sleep > gettimes() - time)
+    {
+        usleep(50);
+    }
+    
+    // if (philo->parms->time_to_die < time_to_sleep)
+    //     usleep(philo->parms->time_to_die * 1000);
+    // else
+    //     usleep(time_to_sleep * 1000);
 }
 
 void ft_printf_status(char *msg, t_philo *philo)

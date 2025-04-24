@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:11:58 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/22 02:07:15 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/24 01:24:10 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void *ft_routing_moniter(void *argv)
             philo->parms->it_over = 1;
             sem_wait(philo->parms->write);
             printf("%ld %d died\n", (time - philo->parms->start), (philo->id_philo + 1));
-            sem_post(philo->parms->write);
+            // sem_post(philo->parms->write); 
             sem_post(philo->parms->death);
             exit(1);
         }

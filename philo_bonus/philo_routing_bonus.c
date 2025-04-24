@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 20:50:19 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/22 01:56:29 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/24 02:41:48 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void ft_eat(t_philo *philo)
 	sem_wait(philo->parms->death);
 	philo->last_meal_time = gettime();
 	philo->meals_count++;
-	if (philo->meals_count == philo->parms->max_philo_eat)
-		exit(0);
 	sem_post(philo->parms->death);
 	ft_print_status("is eating", philo);
 	ft_usleep(philo->parms->time_to_eat, philo);
