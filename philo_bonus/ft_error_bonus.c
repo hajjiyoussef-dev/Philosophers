@@ -12,36 +12,34 @@
 
 #include "philo_bonus.h"
 
-
-void ft_clear(t_params *par)
+void	ft_clear(t_params *par)
 {
-    if (par->fork && par->fork != SEM_FAILED)
-    {
-        sem_close(par->fork);
-        sem_unlink("/forks");
-    }
-    if (par->write && par->write != SEM_FAILED)
-    {
-        sem_close(par->write);
-        sem_unlink("/write");
-    }
-    if (par->meal_check && par->meal_check != SEM_FAILED)
-    {
-        sem_close(par->meal_check);
-        sem_unlink("/meal_check");
-    }
-    if (par->death && par->death != SEM_FAILED)
-    {
-        sem_close(par->death);
-        sem_unlink("/death");
-    }
+	if (par->fork && par->fork != SEM_FAILED)
+	{
+		sem_close(par->fork);
+		sem_unlink("/forks");
+	}
+	if (par->write && par->write != SEM_FAILED)
+	{
+		sem_close(par->write);
+		sem_unlink("/write");
+	}
+	if (par->meal_check && par->meal_check != SEM_FAILED)
+	{
+		sem_close(par->meal_check);
+		sem_unlink("/meal_check");
+	}
+	if (par->death && par->death != SEM_FAILED)
+	{
+		sem_close(par->death);
+		sem_unlink("/death");
+	}
 }
 
-
-void ft_error(char *str, t_params *par, int flag)
+void	ft_error(char *str, t_params *par, int flag)
 {
-    if (flag == 1)
-        ft_clear(par);
-    printf("Error:{ %s }\n", str);
-    exit(1);
+	if (flag == 1)
+		ft_clear(par);
+	printf("Error:{ %s }\n", str);
+	exit(1);
 }

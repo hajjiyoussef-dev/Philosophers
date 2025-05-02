@@ -5,7 +5,7 @@ SRC = ft_atoi_bonus.c ft_error_bonus.c ft_kill_process_bonus.c ft_routing_monito
 
 OBJC = ${SRC:.c=.o}
 CC = cc 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=leak
+CFLAGS = -Wall -Wextra -Werror 
 RM = rm -rf
 
 $(NAME): $(OBJC)
@@ -13,7 +13,7 @@ $(NAME): $(OBJC)
 
 
 %.o: %.c philo_bonus.h
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 

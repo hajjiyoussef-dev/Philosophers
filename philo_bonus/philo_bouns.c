@@ -6,30 +6,31 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:18:43 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/24 03:03:57 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/29 17:53:29 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void handle1(t_params *par)
+void	handle1(t_params *par)
 {
 	printf("0 1 has taken a fork\n");
 	usleep(par->time_to_die * 1000);
 	printf("%d 1 died\n", (par->time_to_die));
-	return;
+	return ;
 }
 
-long gettime()
+long	gettime(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
+
 	gettimeofday(&tv, NULL);
-	return (((tv.tv_sec * 1000) +  (tv.tv_usec / 1000)));
+	return (((tv.tv_sec * 1000) + (tv.tv_usec / 1000)));
 }
 
-int routine(t_philo *philo)
+int	routine(t_philo *philo)
 {
-	pthread_t monitor_id;
+	pthread_t	monitor_id;
 
 	if (philo->id_philo % 2 != 0)
 		usleep(1000);
@@ -40,29 +41,29 @@ int routine(t_philo *philo)
 		if (philo->parms->it_over == 1)
 		{
 			sem_post(philo->parms->death);
-			break;
+			break ;
 		}
 		sem_post(philo->parms->death);
 		ft_take_forks(philo);
 		ft_eat(philo);
 		ft_put_down_forks(philo);
-		if (philo->meals_count == philo->parms->max_philo_eat)
-		{
-			sem_post(philo->parms->meal_check);
-			exit(0);
-		}
 		ft_sleep(philo);
+		if (philo->meals_count == philo->parms->max_philo_eat)
+			exit(0);
 		ft_think(philo);
 	}
 	pthread_join(monitor_id, NULL);
-	return(0);
+	return (0);
 }
 
-int init_philo(t_params *par)
+int	init_philo(t_params *par)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	par->philo = malloc(sizeof(t_philo) * par->philo_nbr);
+	if (!par->philo)
+		return (1);
 	while (i < par->philo_nbr)
 	{
 		par->philo[i].id_philo = i;
@@ -74,14 +75,15 @@ int init_philo(t_params *par)
 	return (0);
 }
 
-int philosophers(t_params *par)
+int	philosophers(t_params *par)
 {
-	pid_t pid;
-	int i;
+	pid_t	pid;
+	int		i;
 
 	i = 0;
 	par->start = gettime();
-	init_philo(par);
+	if (init_philo(par))
+		return (1);
 	while (i < par->philo_nbr)
 	{
 		pid = fork();
@@ -90,12 +92,13 @@ int philosophers(t_params *par)
 		else if (pid == 0)
 		{
 			routine(&(par->philo[i]));
-			return(1);
+			return (1);
 		}
 		par->philo[i].process_id = pid;
 		i++;
 	}
 	ft_kill_process(par);
 	free(par->philo);
+	ft_clear(par);
 	return (0);
 }

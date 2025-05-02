@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 20:49:59 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/21 20:50:23 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/04/26 11:38:19 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	help_atoi(long long arr[], const char *str, int *error)
 		*error = 1;
 		return (0);
 	}
-	if ((arr[0] > (2147483647 / 10) || (arr[0] == 2147483647 / 10 && (str[arr[2]] - '0') > 7)) || (arr[1] == -1 && arr[0] == 2147483647 / 10 && (str[arr[2]] - '0') == 8))
+	if ((arr[0] > (2147483647 / 10) || (arr[0] == 2147483647 / 10
+				&& (str[arr[2]] - '0') > 7)) || (arr[1] == -1
+			&& arr[0] == 2147483647 / 10 && (str[arr[2]] - '0') == 8))
 	{
 		*error = 1;
 		return (0);
@@ -41,9 +43,9 @@ int	ft_atoi(const char *str)
 	int			error;
 
 	error = 0;
-	arr[0] = 0; // res
-	arr[1] = 1; // sig
-	arr[2] = 0; // i
+	arr[0] = 0;
+	arr[1] = 1;
+	arr[2] = 0;
 	while (str[arr[2]] == ' ' || str[arr[2]] == '\f' || str[arr[2]] == '\n'
 		|| str[arr[2]] == '\r' || str[arr[2]] == '\v')
 		arr[2]++;
@@ -58,6 +60,6 @@ int	ft_atoi(const char *str)
 		if (error == 1)
 			return (0);
 		arr[2]++;
-	}	
+	}
 	return (arr[0] * arr[1]);
 }
