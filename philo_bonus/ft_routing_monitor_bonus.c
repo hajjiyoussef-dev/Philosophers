@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:11:58 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/26 11:38:39 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/05 21:10:03 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 void	*ft_routing_moniter(void *argv)
 {
 	t_philo	*philo;
-	int		i;
 	long	time;
 
 	philo = (t_philo *)argv;
 	while (1)
 	{
-		i = 0;
+		if (philo->parms->max_philo_eat != -1
+			&& philo->meals_count >= philo->parms->max_philo_eat)
+			return (NULL);
 		time = gettime();
 		sem_wait(philo->parms->death);
 		if (time - philo->last_meal_time > philo->parms->time_to_die)
@@ -34,7 +35,6 @@ void	*ft_routing_moniter(void *argv)
 			exit(1);
 		}
 		sem_post(philo->parms->death);
-		i++;
 		usleep(2000);
 	}
 	return (NULL);

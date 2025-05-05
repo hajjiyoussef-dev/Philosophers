@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:54:54 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/29 17:54:27 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/04 20:58:03 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ int	main(int argc, char **argv)
 		ft_error("failed sem init", &par, 1);
 	if (philosophers(&par))
 		return (ft_clear(&par), EXIT_FAILURE);
-	return (0);
+	return (EXIT_SUCCESS);
 }
