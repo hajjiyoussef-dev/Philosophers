@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:17 by yhajji            #+#    #+#             */
-/*   Updated: 2025/05/04 20:31:02 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/13 19:08:00 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 	if (p.philo_nbr == 1)
-		return (handle1(&p), 0);
+		return (handle1(&p), ft_clear(&p), 0);
 	if (philosophers(&p))
 		return (ft_clear(&p), EXIT_FAILURE);
 	return (ft_clear(&p), EXIT_SUCCESS);

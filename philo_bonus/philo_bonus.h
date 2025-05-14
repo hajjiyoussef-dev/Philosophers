@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:55:20 by yhajji            #+#    #+#             */
-/*   Updated: 2025/05/05 21:09:32 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/15 00:47:06 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_params
 	sem_t				*death;
 	sem_t				*meal_check;
 	sem_t				*write;
+	sem_t				*start_simul;
 	t_philo				*philo;
 
 }						t_params;
@@ -73,5 +74,7 @@ void					ft_sleep(t_philo *philo);
 void					*ft_routing_moniter(void *argv);
 void					ft_kill_process(t_params *par);
 void					ft_clear(t_params *par);
+
+void					help_philo(t_params *par);
 
 #endif

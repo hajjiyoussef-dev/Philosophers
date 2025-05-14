@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:49:37 by yhajji            #+#    #+#             */
-/*   Updated: 2025/05/04 20:33:39 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/14 19:21:18 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int	philosophers(t_params *par)
 		return (1);
 	par->start = gettimes();
 	init_philosophers(par, philo);
-	pthread_create(&monitor_id, NULL, routing_monitor, par);
+	if (pthread_create(&monitor_id, NULL, routing_monitor, par) != 0)
+		return (free(par->philo), 1);
 	i = 0;
 	while (i < par->philo_nbr)
 	{

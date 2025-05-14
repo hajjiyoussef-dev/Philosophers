@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 22:46:03 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/21 22:46:29 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/14 22:52:49 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	ft_clear(t_params *par)
 	{
 		sem_close(par->death);
 		sem_unlink("/death");
+	}
+	if (par->start_simul && par->start_simul != SEM_FAILED)
+	{
+		sem_close(par->start_simul);
+		sem_unlink("/start_simul");
 	}
 }
 

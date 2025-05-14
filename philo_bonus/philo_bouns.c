@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 17:18:43 by yhajji            #+#    #+#             */
-/*   Updated: 2025/05/05 00:52:46 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/15 00:46:06 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	routine(t_philo *philo)
 
 	if (philo->id_philo % 2 != 0)
 		usleep(1000);
-	pthread_create(&monitor_id, NULL, ft_routing_moniter, philo);
+	if (pthread_create(&monitor_id, NULL, ft_routing_moniter, philo) != 0)
+		return (1);
 	while (1)
 	{
 		sem_wait(philo->parms->death);
@@ -91,14 +92,13 @@ int	philosophers(t_params *par)
 			ft_error("fork", par, 1);
 		else if (pid == 0)
 		{
+			sem_wait(par->start_simul);
 			routine(&(par->philo[i]));
 			return (1);
 		}
 		par->philo[i].process_id = pid;
 		i++;
 	}
-	ft_kill_process(par);
-	free(par->philo);
-	ft_clear(par);
+	help_philo(par);
 	return (0);
 }

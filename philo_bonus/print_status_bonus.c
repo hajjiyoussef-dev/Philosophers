@@ -6,11 +6,26 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:11:53 by yhajji            #+#    #+#             */
-/*   Updated: 2025/04/27 19:31:05 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/15 00:46:52 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
+void	help_philo(t_params *par)
+{
+	int	i;
+
+	i = 0;
+	while (i < par->philo_nbr)
+	{
+		sem_post(par->start_simul);
+		i++;
+	}
+	ft_kill_process(par);
+	free(par->philo);
+	ft_clear(par);
+}
 
 void	ft_usleep(int time_to_sleep)
 {

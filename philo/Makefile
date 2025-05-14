@@ -5,7 +5,7 @@ SRC = ft_atoi.c ft_error.c main.c philo.c philos_routine.c \
 
 OBJC = ${SRC:.c=.o}
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror  -fsanitize=address -g
 RM = rm -rf 
 
 $(NAME): $(OBJC)

@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:27 by yhajji            #+#    #+#             */
-/*   Updated: 2025/05/04 19:09:03 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/15 00:51:54 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 typedef pthread_mutex_t	t_mtx;
 typedef struct s_philo	t_philo;
 typedef struct s_params	t_params;
-
-// #define malloc(x) NULL;
 
 typedef struct s_params
 {

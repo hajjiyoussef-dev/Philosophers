@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:54:54 by yhajji            #+#    #+#             */
-/*   Updated: 2025/05/04 20:58:03 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/15 00:44:18 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	init_sem(t_params *par)
 	sem_unlink("/write");
 	sem_unlink("/meal_check");
 	sem_unlink("/death");
+	sem_unlink("/start_simul");
 	par->fork = sem_open("/forks", O_CREAT | O_EXCL, 0644, par->philo_nbr);
 	if (par->fork == SEM_FAILED)
 		return (1);
@@ -29,6 +30,9 @@ int	init_sem(t_params *par)
 		return (1);
 	par->death = sem_open("/death", O_CREAT | O_EXCL, 0644, 1);
 	if (par->death == SEM_FAILED)
+		return (1);
+	par->start_simul = sem_open("/start_simul", O_CREAT, 0644, 0);
+	if (par->start_simul == SEM_FAILED)
 		return (1);
 	return (0);
 }
