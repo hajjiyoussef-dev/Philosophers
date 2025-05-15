@@ -6,7 +6,7 @@
 /*   By: yhajji <yhajji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:52:27 by yhajji            #+#    #+#             */
-/*   Updated: 2025/05/15 00:51:54 by yhajji           ###   ########.fr       */
+/*   Updated: 2025/05/15 23:20:16 by yhajji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@
 typedef pthread_mutex_t	t_mtx;
 typedef struct s_philo	t_philo;
 typedef struct s_params	t_params;
+
+// line for malloc failed only!!!!
+
+// #include <string.h>
+// static inline void *p(size_t size, char *file, int line)
+// {
+// 	if (strstr(file, "main.c") && line == 22)
+// 		return (NULL);
+// 	return (malloc(size));
+// }
+// #define malloc(x) p((x), __FILE__, __LINE__)
 
 typedef struct s_params
 {

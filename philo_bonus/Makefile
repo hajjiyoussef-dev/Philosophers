@@ -5,7 +5,7 @@ SRC = ft_atoi_bonus.c ft_error_bonus.c ft_kill_process_bonus.c ft_routing_monito
 
 OBJC = ${SRC:.c=.o}
 CC = cc 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror 
 RM = rm -rf
 
 $(NAME): $(OBJC)
